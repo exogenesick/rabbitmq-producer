@@ -12,13 +12,13 @@ if (!$queueName || !$message) {
     die;
 }
 
-define('MESSAGE_DURABILITY', true);
+define('QUEUE_DURABILITY', true);
 define('MESSAGE_PERSISTENT', 2);
 
 $connection = new AMQPConnection('localhost', 5672, 'guest', 'guest');
 $channel = $connection->channel();
 
-$channel->queue_declare($queueName, false, MESSAGE_DURABILITY, false, false);
+$channel->queue_declare($queueName, false, QUEUE_DURABILITY, false, false);
 
 $msg = new AMQPMessage(
     $message,
